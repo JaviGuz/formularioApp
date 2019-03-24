@@ -1,21 +1,33 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { getMaxListeners } from 'cluster';
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styles: []
+  styles: [`
+    .ng-invalid.ng-touched:not(form){
+      border: 1px solid red;
+    }
+  `]
 })
 export class TemplateComponent {
 
   usuario: Object = {
-    nombre: 'Javier',
-    apellido: 'Guzman',
-    correo: 'xavigu@gmail.com'
-
-
+    nombre: null,
+    apellido: null,
+    correo: null,
+    usuario: '',
+    sexo: 'Hombre'
   };
+
+  paises = [{
+    codigo: 'ESP',
+    nombre: 'Spain',
+  },
+  {
+    codigo: 'FR',
+    nombre: 'France',
+  }];
 
   constructor() { }
 
