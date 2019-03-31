@@ -2,11 +2,18 @@
 <hr>
  <form [formGroup]="forma"  (ngSubmit)= "guardarCambios()" novalidate="novalidate"> <!--Relacion con la propiedad del data.component.ts, el novalidate es para cuando no haga la validacion del html5 cuando se le de al submit del formulario -->
   <div>
-    <div class="form-group row">
+    <div class="form-group row" [ngClass]="{'has-danger': !forma.get('nombre').valid}">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
          <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"> <!--formControlName es la variable que se relaciona con el nombre de la variable en el fichero ts -->
-      </div>
+          <div *ngIf="forma.controls['nombre'].errors?.required"
+                class="form-control-feedback">
+            El nombre es necesario.
+          </div>
+          <div *ngIf="forma.controls['nombre'].errors?.minlength" class="form-control-feedback">
+            Por lo menos 3 caracteres.
+          </div>
+        </div>
     </div>
 
     <div class="form-group row">
