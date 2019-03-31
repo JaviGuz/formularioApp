@@ -28,6 +28,14 @@ export class TemplateComponent {
   {
     codigo: 'FR',
     nombre: 'France',
+  },
+  {
+    codigo: 'DE',
+    nombre: 'Germany',
+  },
+  {
+    codigo: 'PR',
+    nombre: 'Portugal',
   }];
 
   sexos: string[] = ['Hombre', 'Mujer', 'Trans'];
