@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormControlName } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormControlName, FormArray } from '@angular/forms';
 
 
 @Component({
@@ -18,7 +18,8 @@ export class DataComponent  {
       apellido: 'Guzman'
     },
 
-    correo: 'javier.guzman@gmail.com'
+    correo: 'javier.guzman@gmail.com',
+    pasatiempos: ['viciar', 'dormir', 'comer']
   };
 
   constructor() {
@@ -41,12 +42,21 @@ export class DataComponent  {
       'correo': new FormControl('', [
                                       Validators.required,
                                       Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
-                                    ])
+                                    ]),
+      'pasatiempos': new FormArray  ([
+        new FormControl('Jalar', Validators.required)
+      ])
     });
 
-    this.forma.setValue(this.usuario); // setea en el formulario el contenido del objeto usuario, siempre que tenga la misma estructura
+  // this.forma.setValue(this.usuario);//setea en el formulario(forma)el contenido del objeto usuario,siempre que tenga la misma estructura
 
    }
+
+    agregarPasatiempo() {
+      (<FormArray>this.forma.controls['pasatiempos']).push(
+        new FormControl('Beber', Validators.required)
+      );         // Las <> es para decirle que es un array y a parte del tipo FormArray
+    }
 
    guardarCambios() {
      console.log(this.forma);
